@@ -7,6 +7,7 @@ from typing import List, Optional, Tuple
 
 import cv2
 import mediapipe as mp
+from mediapipe.python.solutions import face_mesh as mp_face_mesh
 import numpy as np
 
 KEYPOINT_INDEXES = [33, 263, 1, 61, 291]
@@ -74,7 +75,8 @@ def detect_faces(image_bgr: np.ndarray) -> List[FaceData]:
     image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
     height, width = image_rgb.shape[:2]
 
-    face_mesh = mp.solutions.face_mesh.FaceMesh(
+    mesh_module = mp.solutions.face_mesh if hasattr(mp, "solutions") else mp_face_mesh
+    face_mesh = mesh_module.FaceMesh(
         static_image_mode=True,
         max_num_faces=10,
         refine_landmarks=True,

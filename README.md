@@ -40,3 +40,4 @@ python face_swapper.py \
 - The script works best with front-facing photos and good lighting.
 - If no face is detected, check the image resolution or choose a different photo.
 - The agent is fully local and does not require OpenAI API calls, but you can integrate additional API logic if desired.
+- On some installations, MediaPipe may print a oneDNN/TensorFlow warning about numerical differences; this is informational and can be ignored.
